@@ -49,10 +49,15 @@ const getUserDetails = async (accountNo, code) => {
 		.then((data) => {
 			// Handle the response data
 			console.log(data);
-			customerName.innerText = data.data.account_name;
+			if (data.status === true) {
+				customerName.innerText = data.data.account_name;
+			} else {
+				alert(data.message);
+			}
 		})
 		.catch((error) => {
 			// Handle errors
+
 			console.error("Error:", error);
 		});
 };
@@ -70,5 +75,5 @@ form.addEventListener("submit", (e) => {
 	setTimeout(() => {
 		button.innerText = "Submit";
 		form.reset();
-	}, 3000);
+	}, 1000);
 });
